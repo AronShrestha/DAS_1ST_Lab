@@ -1,7 +1,4 @@
 import unittest
-
-from cv2 import merge
-
 from sorting import insertion_sort,Merge,Merge_sort
 
 class SortingTestCase(unittest.TestCase):

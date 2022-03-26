@@ -19,10 +19,6 @@ def Merge_sort(A,p,r):
         Merge_sort(A,q+1,r)
         Merge(A,p,q,r)
     return A
-    
-   
-
-
 def Merge(A,p,q,r):
     n1 = q-p+1
     n2 = r-q
@@ -32,11 +28,9 @@ def Merge(A,p,q,r):
         L.append(A[p+i-1])
     for j in range(1,n2+1):
         R.append(A[q+j])
-
     i = 0
     j = 0
     k=p
-
     while i < n1 and j < n2:
         if L[i]<=R[j]:
             A[k]=L[i]

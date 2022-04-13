@@ -83,23 +83,27 @@ class BinarySearchTree:
 
     def smallest(self):
          
-        return self._smallest(self.root)
-
+        node =self._smallest(self.root)
+        return (node.key,node.value)
 
     
     def _smallest(self,rootnode):
         while rootnode.left != None :
             rootnode =rootnode.left 
-        return (rootnode.key,rootnode.value)
+        return rootnode
 
 
     def largest(self):
-        newNode = self.root 
-        while newNode.right != None :
          
-            newNode = newNode.right
-        
-        return (newNode.key,newNode.value)
+        node =self._largest(self.root)
+        return (node.key,node.value)
+
+    
+    def _largest(self,rootnode):
+        while rootnode.right != None :
+            rootnode =rootnode.right
+        return rootnode
+
     
 
 
@@ -121,9 +125,9 @@ class BinarySearchTree:
     
     def preorder_walk(self):
         preorder_walk_list = []
-        root_node = self.root
-        self.Call_preorder_wlak(root_node,preorder_walk_list)
-        return preorder_walk_list
+
+      
+        return  self.Call_preorder_wlak(self.root,preorder_walk_list)
     
     def Call_preorder_wlak(self,root,pre_list):
         if not root:
@@ -132,6 +136,7 @@ class BinarySearchTree:
             pre_list.append(root.key)
             self.Call_preorder_wlak(root.left,pre_list)
             self.Call_preorder_wlak(root.right,pre_list)
+            return pre_list
 
     def postorder_walk(self):
         postorder_walk_list = []
@@ -179,13 +184,22 @@ class BinarySearchTree:
                 
             
             else:
-                successor =self._smallest(node.right)
+                successor =self._largest(node.left)
                 node.key = successor.key
                 node.value = successor.value
-                node.right = self.Call_remove(node.right,successor.key)
+                node.left = self.Call_remove(node.left,successor.key)
                 return node 
 
 
         
-bsTree = BinarySearchTree()
-print(bsTree.size())
+bst = BinarySearchTree()
+
+bst.add(10, "Value for 10")
+bst.add(52, "Value for 52")
+bst.add(5, "Value for 5")
+bst.add(8, "Value for 8")
+bst.add(1, "Value for 1")
+
+bst.add(30, "Value for 30")
+bst.add(45, "Value for 45")
+print(bst.inorder_walk())
